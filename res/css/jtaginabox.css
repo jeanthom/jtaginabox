@@ -1,0 +1,14 @@
+.overlayspinner {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 7px;
+  font-weight: 300;
+}
+
+.stlinkinfobox {
+  background-color: white;
+  color: black;
+}
+

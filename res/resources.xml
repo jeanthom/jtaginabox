@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gresources>
+  <gresource prefix="/">
+    <file preprocess="xml-stripblanks" compressed="true">ui/Homepage.ui</file>
+    <file preprocess="xml-stripblanks" compressed="true">ui/overlayspinner.ui</file>
+    <file preprocess="xml-stripblanks" compressed="true">ui/stlinkinfobox.ui</file>
+    <file compressed="true">css/jtaginabox.css</file>
+  </gresource>
+</gresources>
+  

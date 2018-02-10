@@ -1,0 +1,6 @@
+[submodule "DirtyJTAG"]
+	path = DirtyJTAG
+	url = https://github.com/jeanthom/DirtyJTAG
+[submodule "urjtag"]
+	path = urjtag
+	url = https://git.code.sf.net/p/urjtag/git
