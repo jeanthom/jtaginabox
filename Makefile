@@ -50,9 +50,8 @@ appimage: jtaginabox libstlinkloader/libstlinkloader.so res/runtime-$(ARCH) urjt
 	chmod a+x JTAGInABox-$(ARCH).AppImage
 
 dirtyjtag.bin:
-	cd DirtyJTAG
-	$(MAKE) bin PLATFORM=stlinkv2dfu
-	cp dirtyjtag.stlinkv2dfu.bin ../dirtyjtag.bin
+	cd DirtyJTAG && $(MAKE) PLATFORM=stlinkv2dfu
+	cp DirtyJTAG/src/dirtyjtag.stlinkv2dfu.bin dirtyjtag.bin
 
 .PHONY: clean
 clean:

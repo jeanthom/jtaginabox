@@ -2,3 +2,4 @@ res/resources.c
 src/*.o
 src/*.vapi
 jtaginabox
+*.AppImage
