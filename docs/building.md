@@ -1,6 +1,15 @@
 # Building JTAG in a box yourself
     
-Assuming you have Docker on your computer, simply run `./build.sh` script. This is the recommended way of building JTAG in a box. After initial Docker configuration (Ubuntu container setup and package installation), the build time is around a minute and a half.
+Assuming you have Docker on your computer :
+
+```
+git clone https://github.com/jeanthom/jtaginabox
+cd jtaginabox
+git submodule update --init --recursive
+./build.sh
+```
+
+This is the recommended way of building JTAG in a box. After initial Docker configuration (Ubuntu container setup and package installation), the build time is around a minute and a half.
 
 The build scripts does the following :
 
