@@ -42,6 +42,7 @@ appimage: jtaginabox libstlinkloader/libstlinkloader.so res/runtime-$(ARCH) urjt
 	cp urjtag/urjtag/src/.libs/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/
 	ln -f JTAGInABox.AppDir/usr/lib/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/liburjtag.so
 	ln -f JTAGInABox.AppDir/usr/lib/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/liburjtag.so.0
+	cp /usr/lib/x86_64-linux-gnu/libvte-2.91.so.0 JTAGInABox.AppDir/usr/lib/
 	@echo "Current AppDir tree :"
 	@tree JTAGInABox.AppDir
 	mksquashfs JTAGInABox.AppDir JTAGInABox.squashfs -root-owned -noappend
