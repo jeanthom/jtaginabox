@@ -27,6 +27,7 @@ res/resources.c: res/resources.xml
 
 jtaginabox: $(VALA_OBJS) libstlinkloader/libstlinkloader.so res/resources.c
 	$(CC) -g res/resources.c $(VALA_OBJS) $(LDFLAGS) -o $@
+	strip -s jtaginabox
 
 .PHONY: urjtag
 urjtag:
