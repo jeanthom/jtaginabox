@@ -6,6 +6,7 @@ MODULES=glib-2.0 gio-2.0 gtk+-3.0 vte-2.91 libusb-1.0
 LDFLAGS=-Llibstlinkloader -lstlinkloader $(shell pkg-config --libs --cflags $(MODULES)) -Wl,-Rlibstlinkloader
 VALAFLAGS=--vapidir=libstlinkloader --pkg libusb-1.0 --pkg glib-2.0 --pkg gtk+-3.0 --pkg vte-2.91 --pkg stlinkloader --Xcc="-Ilibstlinkloader/include/" --target-glib=2.38 --gresources=res/resources.xml
 
+
 ARCH=$(shell uname -i)
 
 all: jtaginabox
@@ -42,7 +43,7 @@ appimage: jtaginabox libstlinkloader/libstlinkloader.so res/runtime-$(ARCH) urjt
 	cp urjtag/urjtag/src/.libs/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/
 	ln -f JTAGInABox.AppDir/usr/lib/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/liburjtag.so
 	ln -f JTAGInABox.AppDir/usr/lib/liburjtag.so.0.0.0 JTAGInABox.AppDir/usr/lib/liburjtag.so.0
-	cp /usr/lib/x86_64-linux-gnu/libvte-2.91.so.0 JTAGInABox.AppDir/usr/lib/
+	bash -c "res/appimagelibdep.sh jtaginabox | xargs -I library cp library JTAGInABox.AppDir/usr/lib/"
 	@echo "Current AppDir tree :"
 	@tree JTAGInABox.AppDir
 	mksquashfs JTAGInABox.AppDir JTAGInABox.squashfs -root-owned -noappend
