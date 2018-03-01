@@ -5,7 +5,7 @@ namespace JTAGInABox {
 		private static JTAGInABox app;
 		private JTAGInABoxWindow window = null;
 
-		protected override void activate () {
+		protected override void activate() {
 			// if app is already open
 			if (window != null) {
 				window.present();
@@ -16,19 +16,18 @@ namespace JTAGInABox {
 				Gtk.CssProvider cssProvider = new Gtk.CssProvider();
 				cssProvider.load_from_resource("/css/jtaginabox.css");
 				Gdk.Screen screen=Gdk.Screen.get_default();
-				Gtk.StyleContext.add_provider_for_screen(screen, cssProvider,
-														 Gtk.STYLE_PROVIDER_PRIORITY_USER);
+				Gtk.StyleContext.add_provider_for_screen(screen, cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 			} catch (GLib.Error e) {
 				stderr.printf("Error while loading CSS\n");
 			}
 			
-			window = new JTAGInABoxWindow ();
-			window.set_application (this);
+			window = new JTAGInABoxWindow();
+			window.set_application(this);
 			window.delete_event.connect(window.main_quit);
 			window.show();
 		}
 
-		public static JTAGInABox get_instance () {
+		public static JTAGInABox get_instance() {
 			if (app == null) {
 				app = new JTAGInABox ();
 			}
