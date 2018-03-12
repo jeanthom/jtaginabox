@@ -7,7 +7,7 @@ LDFLAGS=-Llibstlinkloader -lstlinkloader $(shell pkg-config --libs --cflags $(MO
 VALAFLAGS=--vapidir=libstlinkloader --pkg libusb-1.0 --pkg glib-2.0 --pkg gtk+-3.0 --pkg vte-2.91 --pkg stlinkloader --Xcc="-Ilibstlinkloader/include/" --target-glib=2.38 --gresources=res/resources.xml
 
 
-ARCH=$(shell uname -i)
+ARCH=$(shell uname -m)
 
 all: jtaginabox
 
