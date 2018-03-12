@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM debian:stretch-slim
 
 RUN \
   apt-get update && \
@@ -17,6 +17,7 @@ RUN \
 	  python-dev \
 	  tree \
           gcc-arm-none-eabi \
+          wget \
 	  squashfs-tools && \
   rm -rf /var/lib/apt/lists/*
 
