@@ -1,8 +1,8 @@
-FROM debian:stretch-slim
+FROM debian:jessie-slim
 
 RUN \
   apt-get update && \
-  apt-get -y install \
+  apt-get -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 -y install \
   	  valac \
           libgtk-3-dev \
 	  libusb-1.0-0-dev \
@@ -14,9 +14,10 @@ RUN \
 	  autotools-dev \
 	  autopoint \
 	  libtool \
-	  python-dev \
+          python-dev \
 	  tree \
           gcc-arm-none-eabi \
+          libnewlib-arm-none-eabi \
           wget \
 	  squashfs-tools && \
   rm -rf /var/lib/apt/lists/*

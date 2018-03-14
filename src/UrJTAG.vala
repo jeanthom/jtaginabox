@@ -10,7 +10,7 @@ namespace JTAGInABox {
 
 			this.vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 			this.add_overlay(this.vbox);
-			this.set_overlay_pass_through(this.vbox, true);
+			//this.set_overlay_pass_through(this.vbox, true);
 
 			this.terminal = new Vte.Terminal();
 

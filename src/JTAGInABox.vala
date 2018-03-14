@@ -14,7 +14,8 @@ namespace JTAGInABox {
 
 			try {
 				Gtk.CssProvider cssProvider = new Gtk.CssProvider();
-				cssProvider.load_from_resource("/css/jtaginabox.css");
+				GLib.Bytes cssFile = GLib.resources_lookup_data("/css/jtaginabox.css", GLib.ResourceLookupFlags.NONE);
+				cssProvider.load_from_data((string)cssFile.get_data(), (ssize_t)cssFile.get_size());
 				Gdk.Screen screen=Gdk.Screen.get_default();
 				Gtk.StyleContext.add_provider_for_screen(screen, cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 			} catch (GLib.Error e) {

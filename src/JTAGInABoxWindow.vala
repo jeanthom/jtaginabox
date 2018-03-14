@@ -14,7 +14,7 @@ namespace JTAGInABox {
 			this.header.title = "JTAG in a box";
 			this.header.show();
 			
-			this.previousButton = new Gtk.Button.from_icon_name("go-previous-symbolic");
+			this.previousButton = new Gtk.Button.from_icon_name("go-previous-symbolic", Gtk.IconSize.BUTTON);
 			this.previousButton.clicked.connect(this.action_previous);
 			this.header.pack_start(this.previousButton);
 			

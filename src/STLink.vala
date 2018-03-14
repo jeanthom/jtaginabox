@@ -60,7 +60,7 @@ namespace JTAGInABox {
 				// TODO : check that the interface has correctly been claimed
 				dh.claim_interface(0);
 
-				uint8 cmd[] = {0xF3, 0x07};
+				const uint8 cmd[] = {0xF3, 0x07};
 				dh.bulk_transfer(2, cmd, out transferred, 100);
 				
 				dh.release_interface(0);
