@@ -1,6 +1,6 @@
 #!/bin/bash
 
-blacklist=$(wget https://raw.githubusercontent.com/probonopd/AppImages/master/excludelist -O - | sort | uniq | grep -v "^#.*" | grep "[^-\s]")
+blacklist=$(wget --no-check-certificate https://raw.githubusercontent.com/probonopd/AppImages/master/excludelist -O - | sort | uniq | grep -v "^#.*" | grep "[^-\s]")
 blacklist_regex=`echo $blacklist | tr " " "|" | sed 's/\./\\\\./g'`
 
 if [ $# -lt 1 ]
