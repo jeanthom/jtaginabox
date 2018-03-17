@@ -4,7 +4,7 @@ VALAC=valac
 
 MODULES=glib-2.0 gio-2.0 gtk+-3.0 vte-2.91 libusb-1.0
 LDFLAGS=-Llibstlinkloader -lstlinkloader $(shell pkg-config --libs --cflags $(MODULES)) -Wl,-Rlibstlinkloader
-VALAFLAGS=--vapidir=libstlinkloader --pkg libusb-1.0 --pkg glib-2.0 --pkg gtk+-3.0 --pkg vte-2.91 --pkg stlinkloader --Xcc="-Ilibstlinkloader/include/" --target-glib=2.38 --gresources=res/resources.xml
+VALAFLAGS=--vapidir=libstlinkloader --pkg libusb-1.0 --pkg glib-2.0 --pkg gtk+-3.0 --pkg vte-2.91 --pkg stlinkloader --Xcc="-Ilibstlinkloader/include/" --target-glib=2.38 --gresources=res/resources.xml --target-glib=2.40
 
 
 ARCH=$(shell uname -m)
