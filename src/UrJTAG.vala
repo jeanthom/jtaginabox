@@ -2,6 +2,8 @@ namespace JTAGInABox {
 	public class UrJTAG : Gtk.Overlay {
 		Vte.Terminal terminal;
 		Gtk.Box vbox;
+		const string no_urjtag_error_message = "No UrJTAG executable detected. This might be related to a build or installation problem...";
+		const string cable_dirtyjtag_command = "cable dirtyjtag\n";
 		
 		public signal void exited();
 		
@@ -34,7 +36,7 @@ namespace JTAGInABox {
 					stderr.printf ("Error: %s\n", e.message);
 				}
 			} else {
-				this.terminal.feed_child("No UrJTAG executable detected. This might be related to a build or installation problem...", -1);
+				this.terminal.feed_child(UrJTAG.no_urjtag_error_message.to_utf8());
 			}
 
 			this.terminal.child_exited.connect(() => {
@@ -88,7 +90,7 @@ namespace JTAGInABox {
 			if (dirtyjtagDetected) {
 				GLib.MainContext.default().invoke(
 					() => {
-						this.terminal.feed_child("cable dirtyjtag\n", -1);
+						this.terminal.feed_child(UrJTAG.cable_dirtyjtag_command.to_utf8());
 						return GLib.Source.REMOVE;
 					});
 			}
