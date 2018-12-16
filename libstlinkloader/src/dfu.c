@@ -64,7 +64,7 @@ int dfu_download(struct stlinkloadercontext *context,
   *(uint16_t*)(download_request+6) = data_len; /* wLength */
 
   if (wBlockNum >= 2) {
-    encrypt(context->firmware_key, data, data_len);
+   my_encrypt(context->firmware_key, data, data_len);
   }
 
   res = libusb_bulk_transfer(context->usb_dev_handle,

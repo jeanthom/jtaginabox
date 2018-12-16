@@ -1,3 +1,4 @@
 src/*.o
 libstlinkloader.so
 libstlinkloader.a
+libstlinkloader.dylib

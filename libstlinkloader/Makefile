@@ -8,6 +8,9 @@ all: libstlinkloader.so
 libstlinkloader.so: $(OBJS)
 	$(CC) -shared $(LDFLAGS) $(OBJS) -o $@
 
+libstlinkloader.dylib: $(OBJS)
+	$(CC) -dynamiclib $(LDFLAGS) $(OBJS) -o $@
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

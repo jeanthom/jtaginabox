@@ -110,7 +110,7 @@ int stlinkloader_read_infos(struct stlinkloadercontext *context) {
   /* Firmware encryption key generation */
   memcpy(context->firmware_key, data, 4);
   memcpy(context->firmware_key+4, data+8, 12);
-  encrypt((unsigned char*)"I am key, wawawa", context->firmware_key, 16);
+  my_encrypt((unsigned char*)"I am key, wawawa", context->firmware_key, 16);
 
   return 0;
 }
