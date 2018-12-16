@@ -3,7 +3,7 @@ VALA_VAPI=$(VALA_OBJS:o=vapi)
 VALAC=valac
 
 MODULES=glib-2.0 gio-2.0 gtk+-3.0 vte-2.91 libusb-1.0
-LDFLAGS=-Llibstlinkloader -lstlinkloader $(shell pkg-config --libs --cflags $(MODULES)) -Wl,-Rlibstlinkloader
+LDFLAGS=-Llibstlinkloader -lstlinkloader $(shell pkg-config --libs --cflags $(MODULES)) #-Wl,-Rlibstlinkloader
 VALAFLAGS=--vapidir=libstlinkloader --pkg libusb-1.0 --pkg glib-2.0 --pkg gtk+-3.0 --pkg vte-2.91 --pkg stlinkloader --Xcc="-Ilibstlinkloader/include/" --target-glib=2.38 --gresources=res/resources.xml --target-glib=2.40
 
 
@@ -13,6 +13,9 @@ all: jtaginabox
 
 libstlinkloader/libstlinkloader.so:
 	cd libstlinkloader && $(MAKE) libstlinkloader.so
+
+libstlinkloader/libstlinkloader.dylib:
+	cd libstlinkloader && $(MAKE) libstlinkloader.dylib
 
 %.vapi: %.vala
 	$(VALAC) --fast-vapi=$@ $<
@@ -28,6 +31,9 @@ res/resources.c: res/resources.xml
 jtaginabox: $(VALA_OBJS) libstlinkloader/libstlinkloader.so res/resources.c
 	$(CC) -g res/resources.c $(VALA_OBJS) $(LDFLAGS) -o $@
 	strip -s jtaginabox
+
+jtaginabox-mac: $(VALA_OBJS) libstlinkloader/libstlinkloader.dylib res/resources.c
+	$(CC) -g res/resources.c $(VALA_OBJS) $(LDFLAGS) -o jtaginabox
 
 .PHONY: urjtag
 urjtag:
@@ -66,6 +72,7 @@ clean:
 	rm -f JTAGInABox.AppDir/usr/bin/*
 	rm -f JTAGInABox.AppDir/usr/lib/*
 	rm -f dirtyjtag.bin
+	rm -rf JTAGInABox.app
 	cd libstlinkloader/ && $(MAKE) clean
 	cd urjtag/urjtag/ && $(MAKE) clean
 	cd DirtyJTAG/ && $(MAKE) clean
