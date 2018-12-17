@@ -36,7 +36,12 @@ namespace JTAGInABox {
 					stderr.printf ("Error: %s\n", e.message);
 				}
 			} else {
-				this.terminal.feed_child(UrJTAG.no_urjtag_error_message.to_utf8());
+				//this.terminal.feed_child(UrJTAG.no_urjtag_error_message.to_utf8());
+				GLib.MainContext.default().invoke(
+							() => {
+								this.showInfoMessage(UrJTAG.no_urjtag_error_message);
+								return GLib.Source.REMOVE;
+							});
 			}
 
 			this.terminal.child_exited.connect(() => {

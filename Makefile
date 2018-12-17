@@ -32,12 +32,29 @@ jtaginabox: $(VALA_OBJS) libstlinkloader/libstlinkloader.so res/resources.c
 	$(CC) -g res/resources.c $(VALA_OBJS) $(LDFLAGS) -o $@
 	strip -s jtaginabox
 
-jtaginabox-mac: $(VALA_OBJS) libstlinkloader/libstlinkloader.dylib res/resources.c
+jtaginabox-mac: $(VALA_OBJS) libstlinkloader/libstlinkloader.dylib res/resources.c res/Info.plist \
+urjtag-mac dirtyjtag.bin
 	$(CC) -g res/resources.c $(VALA_OBJS) $(LDFLAGS) -o jtaginabox
+	mkdir -p JTAGinabox.app
+	mkdir -p JTAGinabox.app/Contents/MacOS
+	cp jtaginabox JTAGinabox.app/Contents/MacOS/jtaginabox-bin
+	cp libstlinkloader/libstlinkloader.dylib JTAGinabox.app/Contents/MacOS/
+	cp res/Info.plist JTAGinabox.app/Contents/Info.plist
+	install_name_tool -id "@executable_path/libstlinkloader.dylib" JTAGinabox.app/Contents/MacOS/libstlinkloader.dylib
+	install_name_tool -change libstlinkloader.dylib "@executable_path/libstlinkloader.dylib" JTAGinabox.app/Contents/MacOS/jtaginabox-bin
+	cp urjtag/urjtag/src/apps/jtag/.libs/jtag JTAGinabox.app/Contents/MacOS/
+	cp urjtag/urjtag/src/.libs/liburjtag.0.dylib JTAGinabox.app/Contents/MacOS/
+	install_name_tool -id "@executable_path/liburjtag.0.dylib" JTAGinabox.app/Contents/MacOS/liburjtag.0.dylib
+	install_name_tool -change "/usr/local/lib/liburjtag.0.dylib" "@executable_path/liburjtag.0.dylib" JTAGinabox.app/Contents/MacOS/jtag
+	cp res/jtaginabox.sh JTAGInABox.app/Contents/MacOS/jtaginabox
 
 .PHONY: urjtag
 urjtag:
 	cd urjtag/urjtag/ && ./autogen.sh && make
+
+.PHONY: urjtag-mac
+urjtag-mac:
+	YACC=$(YACC) cd urjtag/urjtag/ && ./autogen.sh && ./configure --with-readline=no --enable-python=no --disable-debug --disable-dependency-tracking --disable-silent-rules --prefix=/usr/local && make
 
 .PHONY: appimage
 appimage: jtaginabox libstlinkloader/libstlinkloader.so res/runtime-$(ARCH) urjtag dirtyjtag.bin
